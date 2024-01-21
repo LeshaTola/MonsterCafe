@@ -700,11 +700,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2010763683}
-  - {fileID: 1423386623}
   - {fileID: 548017554}
   - {fileID: 1127206438}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &918827396
 Rigidbody2D:
@@ -789,14 +788,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423386622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.41, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.59000003, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 657470383}
-  m_Father: {fileID: 918827395}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1423386624
 CircleCollider2D:
@@ -847,6 +846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showPoint: {fileID: 548017554}
   hidePoint: {fileID: 1127206438}
+  collider: {fileID: 1423386624}
+  maxCutCount: 3
 --- !u!1 &1436064349
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProcessingRecipeSO : ScriptableObject
 {
 	[field: SerializeField] public string Name { get; private set; }
-	[field: SerializeField] public Ingredient Input { get; private set; }
-	[field: SerializeField] public Ingredient Output { get; private set; }
+	[field: SerializeField] public IngredientSO Input { get; private set; }
+	[field: SerializeField] public IngredientSO Output { get; private set; }
 
 }
