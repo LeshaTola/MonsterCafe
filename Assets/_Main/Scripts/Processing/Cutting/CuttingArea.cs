@@ -2,17 +2,21 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 
-public class CuttingArea : MonoBehaviour
+public class CuttingArea : MonoBehaviour, IHasProgressBar
 {
-	public event Action<float> OnCuttingProgressChanged;
+	public event Action<float> OnProgressChanged;
 	public event Action OnCuttingEnded;
 
+	[Header("Cutting")]
+	[SerializeField] private int maxCutCount;
+
+	[Header("Other")]
+	[SerializeField] private Collider2D areaCollider;
+	[SerializeField] private ProgressBarUI progressBar;
+
+	[Header("DoTween")]
 	[SerializeField] private Transform showPoint;
 	[SerializeField] private Transform hidePoint;
-
-	[SerializeField] private Collider2D areaCollider;
-
-	[SerializeField] private int maxCutCount;
 
 	private float animationTime = 1f;
 	private int cutCount;
@@ -32,7 +36,7 @@ public class CuttingArea : MonoBehaviour
 		cutCount++;
 
 		var cuttingProgress = (float)cutCount / maxCutCount;
-		OnCuttingProgressChanged?.Invoke(cuttingProgress);
+		OnProgressChanged?.Invoke(cuttingProgress);
 		Debug.Log(cuttingProgress);
 
 		if (cuttingProgress.Equals(1f))
@@ -46,7 +50,7 @@ public class CuttingArea : MonoBehaviour
 	private void ResetCuttingProgress()
 	{
 		cutCount = 0;
-		OnCuttingProgressChanged?.Invoke(0f);
+		OnProgressChanged?.Invoke(0f);
 	}
 
 	public void Show()
@@ -54,12 +58,17 @@ public class CuttingArea : MonoBehaviour
 		gameObject.SetActive(true);
 
 		transform.DOKill();
-		transform.DOMove(showPoint.position, animationTime).OnComplete(() => areaCollider.enabled = true);
+		transform.DOMove(showPoint.position, animationTime).OnComplete(() =>
+		{
+			areaCollider.enabled = true;
+			progressBar.Show();
+		});
 	}
 
 	public void Hide()
 	{
 		areaCollider.enabled = false;
+		progressBar.Hide();
 
 		transform.DOKill();
 		transform.DOMove(hidePoint.position, animationTime).OnComplete(() => gameObject.SetActive(false));
