@@ -9,7 +9,7 @@ public class CustomerObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        Clients = new ObjectPool<Customer>(Instantiate,Activate,Deactivate, customerAmount, false);
+        Clients = new ObjectPool<Customer>(Instantiate,Activate,Deactivate, customerAmount, true);
     }
 
     private Customer Instantiate()
