@@ -40,7 +40,7 @@ public class Customer : MonoBehaviour
 
     private void OrderComplite()
     {
-        queue.ReturnFreePoint(point);
+        queue.ActivateTargetPoint(point);
         isClicable = false;
         MoveToTheTarget(queue.Complite, this, transform.parent);
     }

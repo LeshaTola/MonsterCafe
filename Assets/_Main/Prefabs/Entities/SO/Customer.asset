@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f187e5388580d12469a36cee49eaad74, type: 3}
   m_Name: Customer
   m_EditorClassIdentifier: 
-  <MoveDuration>k__BackingField: 5
+  <MoveDuration>k__BackingField: 3
+  <WaitDuration>k__BackingField: 15

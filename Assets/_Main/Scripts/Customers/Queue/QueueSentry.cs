@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QueueSentry : MonoBehaviour
 {
-    [SerializeField] private CustomerObjectPool ObjectPool;
+    [SerializeField] private CustomerPool ObjectPool;
     [SerializeField] private float queueTimer;
     private List<KeyValuePair<bool, Transform>> targetPoints = new();
     private Timer timer;
@@ -24,7 +24,7 @@ public class QueueSentry : MonoBehaviour
 
     private void Start()
     {
-        BeginQueue();
+        StartTimer();
     }
 
     public void BeginQueue()
@@ -37,7 +37,7 @@ public class QueueSentry : MonoBehaviour
         KeyValuePair<bool, Transform> newKvp = new KeyValuePair<bool, Transform>(false, targetPoints[targetPointIndex].Value);
         targetPoints[targetPointIndex] = newKvp;
         StartTimer();
-        ObjectPool.Clients.Get().GoGetOrder(newKvp);
+        ObjectPool.CreateEnemie().GoGetOrder(newKvp);
     }
 
     private void StartTimer()
@@ -45,16 +45,16 @@ public class QueueSentry : MonoBehaviour
         timer = new Timer(UnityEngine.Random.Range(1, queueTimer), endAction: BeginQueue);
         StartCoroutine(timer.Start());
     }
-    public void ReturnFreePoint(KeyValuePair<bool, Transform> item)
+    public void ActivateTargetPoint(KeyValuePair<bool, Transform> item)
     {
-        var targetPointIndex = targetPoints.FindIndex(kvp => kvp.Key == false);
+        var targetPointIndex = targetPoints.FindIndex(kvp => kvp.Value == item.Value);
         item = new KeyValuePair<bool, Transform>(true, targetPoints[targetPointIndex].Value);
         targetPoints[targetPointIndex] = item;
     }
 
     public void Complite(Customer customer)
     {
-        ObjectPool.Clients.Release(customer);
+        ObjectPool.Deactivate(customer);
         BeginQueue();
     }
 }
