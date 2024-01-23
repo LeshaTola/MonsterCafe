@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: config
       value: 
       objectReference: {fileID: 11400000, guid: ac1a98eb548f51b4ba0ed032f9940a04, type: 2}
+    - target: {fileID: 7006220476393716747, guid: 428812582dc20fe4ab60eb77f7a9ea32, type: 3}
+      propertyPath: <Config>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: ac1a98eb548f51b4ba0ed032f9940a04, type: 2}
     - target: {fileID: 7535246582030076873, guid: 428812582dc20fe4ab60eb77f7a9ea32, type: 3}
       propertyPath: m_RootOrder
       value: 0

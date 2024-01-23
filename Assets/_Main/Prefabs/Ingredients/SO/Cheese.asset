@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Cheese
-  <UISprite>k__BackingField: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
-  <Prefab>k__BackingField: {fileID: 0}
+  <UISprite>k__BackingField: {fileID: 21300000, guid: f154797ec3b9a194b93dad03b4d97ccb, type: 3}
+  <Prefab>k__BackingField: {fileID: 4805046421446864472, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}

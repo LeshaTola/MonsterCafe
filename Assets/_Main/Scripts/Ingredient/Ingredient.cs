@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-	[SerializeField] private IngredientSO config;
+	[field: SerializeField] public IngredientSO Config { get; private set; }
 }
