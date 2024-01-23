@@ -1,32 +1,32 @@
+using System;
 using UnityEngine;
 
-public class CuttingBoard : MonoBehaviour
+public class CuttingBoard : MonoBehaviour, IHasProgressBar
 {
+	public event Action<float> OnProgressChanged;
+	public event Action OnCuttingEnded;
+
+	[Header("Cutting")]
+	[SerializeField] private int maxCutCount;
+
+	[Header("Other")]
 	[SerializeField] private ProcessingRecipesListSO cuttingRecipes;
-	[SerializeField] private CuttingArea cuttingArea;
+	[SerializeField] private AcceptArea acceptArea;
 
-	private Ingredient currentIngredient;
+	private int cutCount;
 	private IngredientSO output;
+	public Ingredient CurrentIngredient { get; private set; }
 
-	private void Start()
-	{
-		cuttingArea.OnCuttingEnded += OnCuttingEnded;
-	}
-
-	private void OnDestroy()
-	{
-		cuttingArea.OnCuttingEnded -= OnCuttingEnded;
-	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.TryGetComponent(out Ingredient ingredient))
 		{
-			currentIngredient = ingredient;
+			CurrentIngredient = ingredient;
 			output = GetOutputFromInput(ingredient.Config);
 			if (output != null)
 			{
-				cuttingArea.Show();
+				acceptArea.Show();
 			}
 		}
 	}
@@ -36,8 +36,8 @@ public class CuttingBoard : MonoBehaviour
 		if (collision.TryGetComponent(out Ingredient ingredient))
 		{
 			output = null;
-			currentIngredient = null;
-			cuttingArea.Hide();
+			CurrentIngredient = null;
+			acceptArea.Hide();
 		}
 	}
 
@@ -54,14 +54,35 @@ public class CuttingBoard : MonoBehaviour
 		return null;
 	}
 
-	private void OnCuttingEnded()
+	private void FinishCutting()
 	{
-		if (output == null || currentIngredient == null)
+		if (output == null || CurrentIngredient == null)
 		{
 			return;
 		}
 
+		OnCuttingEnded?.Invoke();
 		Instantiate(output.Prefab, transform.position, Quaternion.identity);
-		Destroy(currentIngredient.gameObject);
+		Destroy(CurrentIngredient.gameObject);
+	}
+
+	public void Cut()
+	{
+		cutCount++;
+
+		var cuttingProgress = (float)cutCount / maxCutCount;
+		OnProgressChanged?.Invoke(cuttingProgress);
+
+		if (cuttingProgress.Equals(1f))
+		{
+			ResetCuttingProgress();
+			FinishCutting();
+		}
+	}
+
+	private void ResetCuttingProgress()
+	{
+		cutCount = 0;
+		OnProgressChanged?.Invoke(0f);
 	}
 }

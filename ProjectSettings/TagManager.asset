@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UnderSprite
+    uniqueID: 1676974301
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: OverSprite
+    uniqueID: 1068466763
     locked: 0
