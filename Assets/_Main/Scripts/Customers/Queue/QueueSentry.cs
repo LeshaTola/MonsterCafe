@@ -28,7 +28,7 @@ public class QueueSentry : MonoBehaviour
         StartQueueTimer();
     }
 
-    public void BeginQueue()
+    public void StartQueue()
     {
         var targetPointIndex = targetPoints.FindIndex(kvp => kvp.Key == true);
 
@@ -54,12 +54,12 @@ public class QueueSentry : MonoBehaviour
     public void OnQueueComplite(Customer customer)
     {
         ObjectPool.Deactivate(customer);
-        BeginQueue();
+        StartQueue();
     }
 
     private void StartQueueTimer()
     {
-        timer = new Timer(UnityEngine.Random.Range(1, queueTimer), endAction: BeginQueue);
+        timer = new Timer(UnityEngine.Random.Range(1, queueTimer), endAction: StartQueue);
 
         StartCoroutine(timer.Start());
     }
