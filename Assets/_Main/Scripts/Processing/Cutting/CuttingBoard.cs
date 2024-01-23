@@ -7,38 +7,42 @@ public class CuttingBoard : MonoBehaviour, IHasProgressBar
 	public event Action OnCuttingEnded;
 
 	[Header("Cutting")]
-	[SerializeField] private int maxCutCount;
+	[SerializeField] private int maxCutAmount;
 
 	[Header("Other")]
 	[SerializeField] private ProcessingRecipesListSO cuttingRecipes;
-	[SerializeField] private AcceptArea acceptArea;
+	[SerializeField] private AcceptUIAnimation acceptUIAnimation;
 
-	private int cutCount;
-	private IngredientSO output;
+	private int cutAmount;
+	private IngredientSO recipeOutput;
 	public Ingredient CurrentIngredient { get; private set; }
 
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.TryGetComponent(out Ingredient ingredient))
+		if (!collision.TryGetComponent(out Ingredient ingredient))
 		{
-			CurrentIngredient = ingredient;
-			output = GetOutputFromInput(ingredient.Config);
-			if (output != null)
-			{
-				acceptArea.Show();
-			}
+			return;
+		}
+
+		CurrentIngredient = ingredient;
+		recipeOutput = GetOutputFromInput(ingredient.Config);
+		if (recipeOutput != null)
+		{
+			acceptUIAnimation.Show();
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.TryGetComponent(out Ingredient ingredient))
+		if (!collision.TryGetComponent(out Ingredient ingredient))
 		{
-			output = null;
-			CurrentIngredient = null;
-			acceptArea.Hide();
+			return;
 		}
+
+		recipeOutput = null;
+		CurrentIngredient = null;
+		acceptUIAnimation.Hide();
 	}
 
 	private IngredientSO GetOutputFromInput(IngredientSO input)
@@ -56,24 +60,25 @@ public class CuttingBoard : MonoBehaviour, IHasProgressBar
 
 	private void FinishCutting()
 	{
-		if (output == null || CurrentIngredient == null)
+		if (recipeOutput == null || CurrentIngredient == null)
 		{
 			return;
 		}
 
 		OnCuttingEnded?.Invoke();
-		Instantiate(output.Prefab, transform.position, Quaternion.identity);
+		Instantiate(recipeOutput.Prefab, transform.position, Quaternion.identity);
 		Destroy(CurrentIngredient.gameObject);
 	}
 
 	public void Cut()
 	{
-		cutCount++;
+		cutAmount++;
 
-		var cuttingProgress = (float)cutCount / maxCutCount;
+		var cuttingProgress = (float)cutAmount / maxCutAmount;
 		OnProgressChanged?.Invoke(cuttingProgress);
 
-		if (cuttingProgress.Equals(1f))
+		float maxProgress = 1f;
+		if (cuttingProgress.Equals(maxProgress))
 		{
 			ResetCuttingProgress();
 			FinishCutting();
@@ -82,7 +87,7 @@ public class CuttingBoard : MonoBehaviour, IHasProgressBar
 
 	private void ResetCuttingProgress()
 	{
-		cutCount = 0;
+		cutAmount = 0;
 		OnProgressChanged?.Invoke(0f);
 	}
 }

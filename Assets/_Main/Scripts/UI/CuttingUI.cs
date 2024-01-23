@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class CuttingUI : MonoBehaviour
 {
 
-	[SerializeField] Button closeButton;
-	[SerializeField] Button foodButton;
+	[SerializeField] Button close;
+	[SerializeField] Button food;
 
 	[Header("Other")]
 	[SerializeField] private Texture2D knifeCursor;
@@ -13,8 +13,8 @@ public class CuttingUI : MonoBehaviour
 
 	private void Awake()
 	{
-		closeButton.onClick.AddListener(() => Hide());
-		foodButton.onClick.AddListener(() =>
+		close.onClick.AddListener(() => Hide());
+		food.onClick.AddListener(() =>
 		{
 			cuttingBoard.Cut();
 		});
@@ -33,7 +33,7 @@ public class CuttingUI : MonoBehaviour
 
 	private void UpdateUI(Sprite foodSprite)
 	{
-		foodButton.image.sprite = foodSprite;
+		food.image.sprite = foodSprite;
 	}
 
 	public void Show()

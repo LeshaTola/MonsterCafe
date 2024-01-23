@@ -10,13 +10,18 @@ public class ProgressBarUI : MonoBehaviour
 
 	private void Start()
 	{
-		hasProgressBar = hasProgressBarGameObject.GetComponent<IHasProgressBar>();
-		if (hasProgressBar == null)
+		if (!hasProgressBarGameObject.TryGetComponent(out hasProgressBar))
 		{
 			Debug.LogError("Object: " + hasProgressBarGameObject + "don't have IHasProgressBar");
+			return;
 		}
 
 		hasProgressBar.OnProgressChanged += ChangeProgressUI;
+	}
+
+	private void OnDestroy()
+	{
+		hasProgressBar.OnProgressChanged -= ChangeProgressUI;
 	}
 
 	private void ChangeProgressUI(float progress)
