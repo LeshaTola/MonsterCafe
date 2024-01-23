@@ -2,67 +2,58 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> where T : MonoBehaviour
+public class ObjectPool<T>
 {
-    private List<T> _objectPool;
+    private Func<T> preloadFunc;
+    private Action<T> getAction;
+    private Action<T> releaseAction;
 
-    public T Prefab { get; private set; }
-    public bool AutoExpand { get; private set; }
-    public Transform Container { get; private set; }
+    private Queue<T> pool = new();
+    private List<T> active = new();
 
-    public ObjectPool(T prefab, bool autoExpand, Transform container, int amount)
+    public IReadOnlyCollection<T> Active { get => active; }
+
+    public ObjectPool(Func<T> preloadFunc, Action<T> getAction, Action<T> releaseAction, int preloadCount)
     {
-        Prefab = prefab;
-        AutoExpand = autoExpand;
-        Container = container;
+        this.preloadFunc = preloadFunc;
+        this.getAction = getAction;
+        this.releaseAction = releaseAction;
 
-        CreatePool(amount);
-    }
-
-    private void CreatePool(int objectAmount)
-    {
-        _objectPool = new List<T>();
-
-        for (int i = 0; i < objectAmount; i++)
+        if (this.preloadFunc == null)
         {
-            CreateObject();
+            Debug.LogError("There is no preloadFunc");
+        }
+
+        for (int i = 0; i < preloadCount; i++)
+        {
+            Release(this.preloadFunc.Invoke());
         }
     }
 
-    private T CreateObject(bool isActiveByDefault = false)
+    public object GetPreloadFunc()
     {
-        var createdObject = UnityEngine.Object.Instantiate(Prefab, Container);
-        createdObject.gameObject.SetActive(isActiveByDefault);
-        _objectPool.Add(createdObject);
-        return createdObject;
+        return preloadFunc;
     }
 
-    public bool HasFreeElement(out T element)
+    public T Get()
     {
-        foreach (var obj in _objectPool)
+        if (pool.Count == 0)
         {
-            if (!obj.gameObject.activeInHierarchy)
-            {
-                element = obj;
-                obj.gameObject.SetActive(true);
-                return true;
-            }
+            pool.Enqueue(preloadFunc.Invoke());
         }
 
-        element = null;
-        return false;
+        T pooledObject = pool.Dequeue();
+        active.Add(pooledObject);
+
+        getAction.Invoke(pooledObject);
+        return pooledObject;
     }
 
-    public T GetFreeElement()
+    public void Release(T obj)
     {
-        if (HasFreeElement(out var element))
-        {
-            return element;
-        }
-        if (AutoExpand)
-        {
-            return CreateObject(true);
-        }
-        throw new Exception($"You have no free objects in {typeof(T)} pool");
+        active.Remove(obj);
+        pool.Enqueue(obj);
+
+        releaseAction?.Invoke(obj);
     }
 }

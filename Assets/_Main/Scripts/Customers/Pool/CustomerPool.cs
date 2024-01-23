@@ -2,21 +2,22 @@ using UnityEngine;
 
 public class CustomerPool: MonoBehaviour
 {
-    [SerializeField] private int _poolSise;
-    [SerializeField] private bool _isAutoExpand;
-    [SerializeField] private Customer _prefab;
-    private ObjectPool<Customer> _enemies;
+    [SerializeField] private int poolSise;
+    [SerializeField] private bool isAutoExpand;
+    [SerializeField] private Customer prefab;
 
-    public int PoolSise { get { return _poolSise; } }
+    private ExpansionControlObjectPool<Customer> customers;
+
+    public int PoolSise { get { return poolSise; } }
 
     private void Start()
     {
-        _enemies = new ObjectPool<Customer>(_prefab, _isAutoExpand, transform, _poolSise);
+        customers = new ExpansionControlObjectPool<Customer>(prefab, isAutoExpand, transform, poolSise);
     }
 
     public Customer CreateEnemie()
     {
-        return _enemies.GetFreeElement();
+        return customers.GetFreeElement();
     }
 
     public void Deactivate(Customer customer)

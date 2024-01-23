@@ -1,59 +1,49 @@
-using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
     [SerializeField] private CustomerSO config;
-    private QueueSentry queue;
-    private Tweener tween;
-    private Timer timer;
+    [SerializeField] private CustomerMove move;
+
     private bool isClicable;
-    private KeyValuePair<bool,Transform> point;
+
+    private QueueSentry queue;
+    private Timer timer;
+    private KeyValuePair<bool,Transform> targetPoint;
 
     private void Start()
     {
-        transform.parent.TryGetComponent<QueueSentry>(out var queueSentry);
-        queue = queueSentry;
+        transform.parent.TryGetComponent<QueueSentry>(out queue);
     }
 
     private void OnMouseDown()
     {
         if(!isClicable) { return; }
+
         StopCoroutine(timer.Start());
-        OrderComplite();
+
+        OnOrderComplite();
     }
 
-    public void GoGetOrder(KeyValuePair<bool,Transform> item)
+    public void MoveToOrder(KeyValuePair<bool,Transform> targetPoint)
     {
-        point = item;
-        MoveToTheTarget(WaitForOrder, item.Value);
+        this.targetPoint = targetPoint;
+        move.MoveToPoint(WaitForOrder, targetPoint.Value);
     }
 
     private void WaitForOrder()
     {
         isClicable = true;
-        timer = new Timer(config.WaitDuration,endAction:OrderComplite);
+        timer = new Timer(config.WaitDuration,endAction:OnOrderComplite);
+
         StartCoroutine(timer.Start());
     }
 
-    private void OrderComplite()
+    private void OnOrderComplite()
     {
-        queue.ActivateTargetPoint(point);
+        queue.UnlockTargetPoint(targetPoint);
         isClicable = false;
-        MoveToTheTarget(queue.Complite, this, transform.parent);
-    }
-
-    private void MoveToTheTarget(Action func,Transform point)
-    {
-        tween = transform.DOMove(point.position, config.MoveDuration);
-        tween.SetEase(Ease.Linear).OnComplete(() => func());
-    }
-
-    private void MoveToTheTarget(Action<Customer> func, Customer customer, Transform point)
-    {
-        tween = transform.DOMove(point.position, config.MoveDuration);
-        tween.SetEase(Ease.Linear).OnComplete(() => func(customer));
+        move.MoveToPoint(queue.OnQueueComplite, this, transform.parent);
     }
 }
