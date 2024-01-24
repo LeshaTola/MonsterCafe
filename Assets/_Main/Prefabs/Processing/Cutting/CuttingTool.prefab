@@ -545,5 +545,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes: {fileID: 11400000, guid: f96d22a93a8eab24e84f82798a2a5ce8, type: 2}
-  processingUIAnimation: {fileID: 9134268134884934235}
+  processingUI: {fileID: 9134268134884934235}
   maxCutAmount: 3

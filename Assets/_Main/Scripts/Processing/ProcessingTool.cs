@@ -4,18 +4,18 @@ public abstract class ProcessingTool : MonoBehaviour
 {
 	[Header("Other")]
 	[SerializeField] protected ProcessingRecipesListSO recipes;
-	[SerializeField] protected ProcessingUIAnimation processingUIAnimation;
+	[SerializeField] protected ProcessingUIAnimation processingUI;
 
 	protected IngredientSO recipeOutput;
 
 	public Ingredient CurrentIngredient { get; protected set; }
 
-	protected void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		PlaceIngredient(collision);
 	}
 
-	protected void OnTriggerExit2D(Collider2D collision)
+	private void OnTriggerExit2D(Collider2D collision)
 	{
 		RemoveIngredient(collision);
 	}
@@ -31,7 +31,7 @@ public abstract class ProcessingTool : MonoBehaviour
 		recipeOutput = GetOutputFromInput(ingredient.Config);
 		if (recipeOutput != null)
 		{
-			processingUIAnimation.Show();
+			processingUI.Show();
 		}
 	}
 
@@ -44,7 +44,7 @@ public abstract class ProcessingTool : MonoBehaviour
 
 		recipeOutput = null;
 		CurrentIngredient = null;
-		processingUIAnimation.Hide();
+		processingUI.Hide();
 	}
 
 	protected IngredientSO GetOutputFromInput(IngredientSO input)

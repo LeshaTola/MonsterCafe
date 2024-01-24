@@ -994,6 +994,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 575136822}
     - target: {fileID: 3375755767599711035, guid: a3b593111e8fa2043ae1fe975446abc4, type: 3}
+      propertyPath: cuttingTool
+      value: 
+      objectReference: {fileID: 918827393}
+    - target: {fileID: 3375755767599711035, guid: a3b593111e8fa2043ae1fe975446abc4, type: 3}
       propertyPath: cuttingBoard
       value: 
       objectReference: {fileID: 918827393}
