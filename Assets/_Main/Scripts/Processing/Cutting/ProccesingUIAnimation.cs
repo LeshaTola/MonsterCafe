@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class AcceptUIAnimation : MonoBehaviour
+public class ProcessingUIAnimation : MonoBehaviour
 {
 	[Header("DoTween")]
 	[SerializeField] private Transform showPoint;

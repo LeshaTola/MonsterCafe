@@ -9,26 +9,26 @@ public class CuttingUI : MonoBehaviour
 
 	[Header("Other")]
 	[SerializeField] private Texture2D knifeCursor;
-	[SerializeField] private CuttingBoard cuttingBoard;
+	[SerializeField] private CuttingTool cuttingTool;
 
 	private void Awake()
 	{
 		close.onClick.AddListener(() => Hide());
 		food.onClick.AddListener(() =>
 		{
-			cuttingBoard.Cut();
+			cuttingTool.Processing();
 		});
 	}
 
 	private void Start()
 	{
-		cuttingBoard.OnCuttingEnded += OnCuttingEnded;
+		cuttingTool.OnCuttingEnded += OnCuttingEnded;
 		Hide();
 	}
 
 	private void OnDestroy()
 	{
-		cuttingBoard.OnCuttingEnded -= OnCuttingEnded;
+		cuttingTool.OnCuttingEnded -= OnCuttingEnded;
 	}
 
 	private void UpdateUI(Sprite foodSprite)
@@ -40,7 +40,7 @@ public class CuttingUI : MonoBehaviour
 	{
 		gameObject.SetActive(true);
 		Cursor.SetCursor(knifeCursor, Vector2.zero, CursorMode.Auto);
-		UpdateUI(cuttingBoard.CurrentIngredient?.Config.UISprite);
+		UpdateUI(cuttingTool.CurrentIngredient?.Config.UISprite);
 	}
 
 	public void Hide()

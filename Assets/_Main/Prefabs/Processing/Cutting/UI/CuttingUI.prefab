@@ -198,10 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c6e7caf4d3b204594bcc3711ef4e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeButton: {fileID: 4646300444662363561}
-  foodButton: {fileID: 7877242967493992494}
+  close: {fileID: 4646300444662363561}
+  food: {fileID: 7877242967493992494}
   knifeCursor: {fileID: 2800000, guid: b8fe4b96498ae74458af967ffa740600, type: 3}
-  cuttingBoard: {fileID: 0}
+  cuttingTool: {fileID: 0}
 --- !u!1 &5974408913679282523
 GameObject:
   m_ObjectHideFlags: 0
