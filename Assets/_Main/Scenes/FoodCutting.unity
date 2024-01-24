@@ -1237,6 +1237,10 @@ PrefabInstance:
       value: CuttingTool
       objectReference: {fileID: 0}
     - target: {fileID: 9188786143036866109, guid: 7a796968902ec454e8f01dd86dfc8b4a, type: 3}
+      propertyPath: maxCutAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188786143036866109, guid: 7a796968902ec454e8f01dd86dfc8b4a, type: 3}
       propertyPath: processingUI
       value: 
       objectReference: {fileID: 629739137}
