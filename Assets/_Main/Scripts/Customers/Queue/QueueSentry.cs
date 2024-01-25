@@ -5,11 +5,13 @@ public class QueueSentry : MonoBehaviour
 {
     [SerializeField] private CustomerPool ObjectPool;
     [SerializeField] private float queueTimer;
+    [SerializeField] private ToolTipUI toolTipUI;
 
     private List<KeyValuePair<bool, Transform>> targetPoints = new();
     private Timer timer;
 
     public List<KeyValuePair<bool, Transform>> TargetPoints { get { return targetPoints; } }
+    public ToolTipUI ToolTipUI { get { return toolTipUI; } }
 
     private void Awake()
     {

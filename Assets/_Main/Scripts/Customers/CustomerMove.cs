@@ -8,6 +8,11 @@ public class CustomerMove : MonoBehaviour
 
     private Tweener tween;
 
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
+
     public void MoveToPoint(Action func, Transform point)
     {
         tween = transform.DOMove(point.position, config.MoveDuration);
