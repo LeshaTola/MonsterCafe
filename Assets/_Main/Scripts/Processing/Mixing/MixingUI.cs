@@ -21,7 +21,7 @@ public class MixingUI : ProcessingUI
 
 	private void Update()
 	{
-		if (foodButton.IsPressed)
+		if (foodButton.IsPressed && foodButton.MouseDelta != Vector3.zero)
 		{
 			mixingTool.Processing();
 		}
