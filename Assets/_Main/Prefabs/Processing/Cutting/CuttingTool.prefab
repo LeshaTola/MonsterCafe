@@ -349,6 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8824622071500476177}
   - component: {fileID: 1993360729535574516}
+  - component: {fileID: 9134268134884934235}
   m_Layer: 0
   m_Name: AcceptUI
   m_TagString: Untagged
@@ -384,8 +385,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e581fe307594284fabadff76255d1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptButton: {fileID: 8421651282051665584}
+  accept: {fileID: 8421651282051665584}
   cuttingUI: {fileID: 0}
+--- !u!114 &9134268134884934235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594077799310074530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4989b1f2d309b4546aa0edaa25df8c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   showPoint: {fileID: 3041327378255254974}
   hidePoint: {fileID: 3350650512431593270}
 --- !u!1 &5514905864198734993
@@ -432,7 +445,7 @@ GameObject:
   - component: {fileID: 5536513555753988299}
   - component: {fileID: 9188786143036866109}
   m_Layer: 0
-  m_Name: CuttingBoard
+  m_Name: CuttingTool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +468,7 @@ Transform:
   - {fileID: 3350650512431593270}
   - {fileID: 8824622071500476177}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5829508121112093783
 Rigidbody2D:
@@ -531,6 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40499e31dfc404841b834d6f76a0e064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCutCount: 3
-  cuttingRecipes: {fileID: 11400000, guid: f96d22a93a8eab24e84f82798a2a5ce8, type: 2}
-  acceptArea: {fileID: 1993360729535574516}
+  recipes: {fileID: 11400000, guid: f96d22a93a8eab24e84f82798a2a5ce8, type: 2}
+  processingUI: {fileID: 9134268134884934235}
+  maxCutAmount: 3
