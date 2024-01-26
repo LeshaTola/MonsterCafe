@@ -3,13 +3,11 @@ using UnityEngine.EventSystems;
 
 public class HoldButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
-
-	public bool IsPressed { get; private set; }
-
-	public Vector3 MouseDelta { get; private set; }
-
 	private Vector3 prevMousePosition;
 	private Camera cameraMain;
+
+	public bool IsPressed { get; private set; }
+	public Vector3 MouseDelta { get; private set; }
 
 	private void Awake()
 	{
@@ -35,12 +33,12 @@ public class HoldButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 		IsPressed = false;
 	}
 
-	public void OnPointerUp(PointerEventData eventData)
+	public void OnPointerUp(PointerEventData _)
 	{
 		IsPressed = false;
 	}
 
-	public void OnPointerDown(PointerEventData eventData)
+	public void OnPointerDown(PointerEventData _)
 	{
 		prevMousePosition = GetMousePosition();
 		MouseDelta = Vector3.zero;

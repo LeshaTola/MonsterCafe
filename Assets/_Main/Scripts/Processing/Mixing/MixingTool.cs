@@ -4,7 +4,7 @@ using UnityEngine;
 public class MixingTool : ProcessingTool, IHasProgressBar
 {
 	public event Action<float> OnProgressChanged;
-	public event Action OnCuttingEnded;
+	public event Action OnMixingEnded;
 
 	[SerializeField] private float mixingTime = 3f;
 
@@ -17,7 +17,8 @@ public class MixingTool : ProcessingTool, IHasProgressBar
 
 	public override void Processing()
 	{
-		mixingTimer += 2 * Time.deltaTime;
+		float mixingPower = 2;
+		mixingTimer += mixingPower * Time.deltaTime;
 		float progress = mixingTimer / mixingTime;
 		OnProgressChanged?.Invoke(progress);
 
@@ -35,20 +36,18 @@ public class MixingTool : ProcessingTool, IHasProgressBar
 			return;
 		}
 
-		OnCuttingEnded?.Invoke();
+		OnMixingEnded?.Invoke();
 		Instantiate(recipeOutput.Prefab, transform.position, Quaternion.identity);
 		Destroy(CurrentIngredient.gameObject);
 	}
 
 	private void ReduceProgress()
 	{
-		if (mixingTimer > 0)
+		mixingTimer -= Time.deltaTime;
+
+		if (mixingTimer <= 0)
 		{
-			mixingTimer -= Time.deltaTime;
-		}
-		else
-		{
-			mixingTimer = 0;
+			mixingTimer = 0f;
 		}
 
 		float progress = mixingTimer / mixingTime;

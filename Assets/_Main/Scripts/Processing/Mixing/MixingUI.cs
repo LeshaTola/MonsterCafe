@@ -10,7 +10,7 @@ public class MixingUI : ProcessingUI
 
 	private void Start()
 	{
-		mixingTool.OnCuttingEnded += OnProcessingEnded;
+		mixingTool.OnMixingEnded += OnProcessingEnded;
 		Hide();
 	}
 
@@ -29,7 +29,7 @@ public class MixingUI : ProcessingUI
 
 	private void OnDestroy()
 	{
-		mixingTool.OnCuttingEnded -= OnProcessingEnded;
+		mixingTool.OnMixingEnded -= OnProcessingEnded;
 	}
 
 	private void UpdateUI(Sprite foodSprite)
