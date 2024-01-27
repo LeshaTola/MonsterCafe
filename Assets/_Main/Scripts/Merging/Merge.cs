@@ -17,12 +17,12 @@ public class Merge : MonoBehaviour
 	{
 		myCollider = GetComponent<CircleCollider2D>();
 
-		mergeRadius = myCollider.radius;
 	}
 
 	private void Start()
 	{
 		dragAndDrop.OnDragEnded += OnDragEnded;
+		CalculateMergeRadius();
 	}
 
 	private void OnDestroy()
@@ -61,6 +61,13 @@ public class Merge : MonoBehaviour
 		var colliders = Physics2D.OverlapCircleAll(transform.position, mergeRadius).ToList();
 		colliders.Remove(myCollider);
 		return colliders;
+	}
+
+	private void CalculateMergeRadius()
+	{
+		mergeRadius = myCollider.radius;
+		float multiplier = 0.6f;
+		mergeRadius *= multiplier;
 	}
 
 	private void OnDragEnded()
