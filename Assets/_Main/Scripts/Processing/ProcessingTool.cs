@@ -22,7 +22,7 @@ public abstract class ProcessingTool : MonoBehaviour
 
 	protected virtual void PlaceIngredient(Collider2D collision)
 	{
-		if (!collision.TryGetComponent(out Ingredient ingredient))
+		if (!collision.TryGetComponent(out Ingredient ingredient) || CurrentIngredient != null)
 		{
 			return;
 		}
@@ -37,7 +37,7 @@ public abstract class ProcessingTool : MonoBehaviour
 
 	protected virtual void RemoveIngredient(Collider2D collision)
 	{
-		if (!collision.TryGetComponent(out Ingredient ingredient))
+		if (!collision.TryGetComponent(out Ingredient ingredient) || ingredient != CurrentIngredient)
 		{
 			return;
 		}
