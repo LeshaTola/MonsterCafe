@@ -36,10 +36,10 @@ public class Customer : MonoBehaviour
     public void MoveToOrder(KeyValuePair<bool,Transform> targetPoint)
     {
         this.targetPoint = targetPoint;
-        move.MoveToPoint(WaitForOrder, targetPoint.Value);
+        move.MoveToPoint(OnStartOrderWaiting, targetPoint.Value);
     }
 
-    private void WaitForOrder()
+    private void OnStartOrderWaiting()
     {
         OnOrderWaiting?.Invoke();
         isClicable = true;

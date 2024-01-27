@@ -7,14 +7,6 @@ public class CustomerUI : MonoBehaviour
     [SerializeField] private PopUpAnimation popUpAnimation;
     [SerializeField] private Customer customer;
     private ToolTipUI toolTipUI;
-
-    private void Start()
-    {
-        transform.parent.TryGetComponent(out Customer parent);
-        toolTipUI = parent.ToolTipUI;
-        popUp.onClick.AddListener(() => toolTipUI.Show());
-    }
-
     private void OnEnable()
     {
         customer.OnOrderWaiting += Show;
@@ -26,6 +18,13 @@ public class CustomerUI : MonoBehaviour
         customer.OnOrderWaiting -= Show;
         customer.OnOrderCompleted -= Hide;
     }
+
+    private void Start()
+    {
+        toolTipUI = customer.ToolTipUI;
+        popUp.onClick.AddListener(() => toolTipUI.Show());
+    }
+
 
     public void Show()
     {

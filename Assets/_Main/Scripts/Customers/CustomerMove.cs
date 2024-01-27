@@ -6,11 +6,6 @@ public class CustomerMove : MonoBehaviour
 {
     [SerializeField] private CustomerSO config;
 
-    private void OnDestroy()
-    {
-        transform.DOKill();
-    }
-
     public void MoveToPoint(Action func, Transform point)
     {
         transform.DOMove(point.position, config.MoveDuration).SetEase(Ease.Linear).OnComplete(() => func());
