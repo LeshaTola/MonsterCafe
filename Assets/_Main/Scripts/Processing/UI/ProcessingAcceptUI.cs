@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AcceptUI : MonoBehaviour
+public class ProcessingAcceptUI : MonoBehaviour
 {
 	[SerializeField] private Button accept;
-	[SerializeField] private CuttingUI cuttingUI;
+	[SerializeField] private ProcessingUI processingUI;
 
 	private void Awake()
 	{
 		accept.onClick.AddListener(() =>
 		{
-			cuttingUI.Show();
+			processingUI.Show();
 		});
 	}
 }
