@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,9 +13,15 @@ public class Customer : MonoBehaviour
     private Timer timer;
     private KeyValuePair<bool,Transform> targetPoint;
 
+    public event Action OnOrderWaiting;
+    public event Action OnOrderCompleted;
+
+    public ToolTipUI ToolTipUI { get; private set; }
+
     private void Start()
     {
-        transform.parent.TryGetComponent<QueueSentry>(out queue);
+        transform.parent.TryGetComponent(out queue);
+        ToolTipUI = queue.ToolTipUI;
     }
 
     private void OnMouseDown()
@@ -29,11 +36,12 @@ public class Customer : MonoBehaviour
     public void MoveToOrder(KeyValuePair<bool,Transform> targetPoint)
     {
         this.targetPoint = targetPoint;
-        move.MoveToPoint(WaitForOrder, targetPoint.Value);
+        move.MoveToPoint(OnStartOrderWaiting, targetPoint.Value);
     }
 
-    private void WaitForOrder()
+    private void OnStartOrderWaiting()
     {
+        OnOrderWaiting?.Invoke();
         isClicable = true;
         timer = new Timer(config.WaitDuration,endAction:OnOrderComplite);
 
@@ -42,6 +50,7 @@ public class Customer : MonoBehaviour
 
     private void OnOrderComplite()
     {
+        OnOrderCompleted?.Invoke();
         queue.UnlockTargetPoint(targetPoint);
         isClicable = false;
         move.MoveToPoint(queue.OnQueueComplite, this, transform.parent);
