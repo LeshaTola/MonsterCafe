@@ -41,7 +41,7 @@ public class Merge : MonoBehaviour
 				continue;
 			}
 
-			var recipeOutput = RecipeSentry.Instance.GetMergingRecipeOutput(ingredient.Config, otherIngredient.Config);
+			var recipeOutput = RecipeSentry.Instance.GetMergingOutput(ingredient.Config, otherIngredient.Config);
 			if (recipeOutput == null)
 			{
 				continue;
