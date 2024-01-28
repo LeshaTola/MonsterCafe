@@ -28,7 +28,7 @@ public abstract class ProcessingTool : MonoBehaviour
 		}
 
 		CurrentIngredient = ingredient;
-		recipeOutput = RecipeSentry.Instance.GetProcessingRecipeOutput(ingredient.Config, recipes.List);
+		recipeOutput = RecipeSentry.Instance.GetProcessingOutput(ingredient.Config, recipes.List);
 		if (recipeOutput != null)
 		{
 			processingUI.Show();
