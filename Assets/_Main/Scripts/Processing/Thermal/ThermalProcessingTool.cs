@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ThermalProcessingTool : ProcessingTool, IHasProgressBar
 {
-	public event Action<float> OnProgressChanged;
-	public event Action OnCuttingEnded;
-
 	[SerializeField] private float maxProcessingTime = 5f;
 
 	private float processingTimer;
+
+	public event Action<float> OnProgressChanged;
+	public event Action OnCuttingEnded;
 
 	private void Start()
 	{

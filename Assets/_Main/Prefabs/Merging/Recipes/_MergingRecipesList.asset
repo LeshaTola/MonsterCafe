@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8077eca35aa073042a7e308f0d2116d4, type: 3}
   m_Name: _MergingRecipesList
   m_EditorClassIdentifier: 
-  <List>k__BackingField: []
+  <List>k__BackingField:
+  - {fileID: 11400000, guid: d4772ebce684b4941838bbdb153a5f1f, type: 2}

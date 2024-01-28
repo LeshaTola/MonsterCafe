@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class CuttingTool : ProcessingTool, IHasProgressBar
 {
-	public event Action<float> OnProgressChanged;
-	public event Action OnCuttingEnded;
 
 	[Header("Cutting")]
 	[SerializeField] private int maxCutAmount;
 
 	private int cutAmount;
+
+	public event Action<float> OnProgressChanged;
+	public event Action OnCuttingEnded;
 
 	public override void Processing()
 	{

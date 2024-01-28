@@ -28,7 +28,7 @@ public abstract class ProcessingTool : MonoBehaviour
 		}
 
 		CurrentIngredient = ingredient;
-		recipeOutput = GetOutputFromInput(ingredient.Config);
+		recipeOutput = RecipeSentry.Instance.GetProcessingRecipeOutput(ingredient.Config, recipes.List);
 		if (recipeOutput != null)
 		{
 			processingUI.Show();
@@ -45,19 +45,6 @@ public abstract class ProcessingTool : MonoBehaviour
 		recipeOutput = null;
 		CurrentIngredient = null;
 		processingUI.Hide();
-	}
-
-	protected IngredientSO GetOutputFromInput(IngredientSO input)
-	{
-		foreach (var recipe in recipes.List)
-		{
-			if (recipe.Input == input)
-			{
-				return recipe.Output;
-			}
-		}
-
-		return null;
 	}
 
 	public abstract void Processing();
