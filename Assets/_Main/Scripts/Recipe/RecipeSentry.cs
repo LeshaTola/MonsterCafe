@@ -15,36 +15,38 @@ public class RecipeSentry : MonoBehaviour
 		Instance = this;
 	}
 
-	public IngredientSO GetCuttingRecipeOutput(IngredientSO input)
+	public IngredientSO GetCuttingOutput(IngredientSO input)
 	{
-		return GetProcessingRecipeOutput(input, cuttingRecipes.List);
-	}
-	public IngredientSO GetMixingRecipeOutput(IngredientSO input)
-	{
-		return GetProcessingRecipeOutput(input, mixingRecipes.List);
-	}
-	public IngredientSO GetThermalProcessingRecipeOutput(IngredientSO input)
-	{
-		return GetProcessingRecipeOutput(input, thermalProcessingRecipes.List);
+		return GetProcessingOutput(input, cuttingRecipes.List);
 	}
 
-	public IngredientSO GetMergingRecipeOutput(IngredientSO firstInput, IngredientSO secondInput)
+	public IngredientSO GetMixingOutput(IngredientSO input)
+	{
+		return GetProcessingOutput(input, mixingRecipes.List);
+	}
+
+	public IngredientSO GetThermalProcessingOutput(IngredientSO input)
+	{
+		return GetProcessingOutput(input, thermalProcessingRecipes.List);
+	}
+
+	public IngredientSO GetMergingOutput(IngredientSO firstInput, IngredientSO secondInput)
 	{
 		foreach (var recipe in mergingRecipes.List)
 		{
-			if (recipe.FirstInput == firstInput || recipe.FirstInput == secondInput)
+			bool isFirstInputMatch = recipe.FirstInput == firstInput || recipe.FirstInput == secondInput;
+			bool isSecondInputMatch = recipe.SecondInput == firstInput || recipe.SecondInput == secondInput;
+
+			if (isFirstInputMatch && isSecondInputMatch)
 			{
-				if (recipe.SecondInput == firstInput || recipe.SecondInput == secondInput)
-				{
-					return recipe.Output;
-				}
+				return recipe.Output;
 			}
 		}
 
 		return null;
 	}
 
-	public IngredientSO GetProcessingRecipeOutput(IngredientSO input, List<ProcessingRecipeSO> list)
+	public IngredientSO GetProcessingOutput(IngredientSO input, List<ProcessingRecipeSO> list)
 	{
 		foreach (var recipe in list)
 		{

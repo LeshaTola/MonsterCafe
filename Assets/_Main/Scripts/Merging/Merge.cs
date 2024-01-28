@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Merge : MonoBehaviour
 {
-	public event Action OnMerge;
-
 	[SerializeField] private Ingredient ingredient;
 	[SerializeField] private DragAndDrop dragAndDrop;
 
 	private float mergeRadius;
 	private CircleCollider2D myCollider;
+
+	public event Action OnMerge;
 
 	private void Awake()
 	{
@@ -21,18 +21,18 @@ public class Merge : MonoBehaviour
 
 	private void Start()
 	{
-		dragAndDrop.OnDragEnded += OnDragEnded;
+		dragAndDrop.OnDragEnded += MergeIngredients;
 		CalculateMergeRadius();
 	}
 
 	private void OnDestroy()
 	{
-		dragAndDrop.OnDragEnded -= OnDragEnded;
+		dragAndDrop.OnDragEnded -= MergeIngredients;
 	}
 
 	private void MergeIngredients()
 	{
-		List<Collider2D> colliders = FindNearestIngredients();
+		List<Collider2D> colliders = FindNearestColiders();
 
 		foreach (Collider2D collider in colliders)
 		{
@@ -56,7 +56,7 @@ public class Merge : MonoBehaviour
 		}
 	}
 
-	private List<Collider2D> FindNearestIngredients()
+	private List<Collider2D> FindNearestColiders()
 	{
 		var colliders = Physics2D.OverlapCircleAll(transform.position, mergeRadius).ToList();
 		colliders.Remove(myCollider);
@@ -68,10 +68,5 @@ public class Merge : MonoBehaviour
 		mergeRadius = myCollider.radius;
 		float multiplier = 0.6f;
 		mergeRadius *= multiplier;
-	}
-
-	private void OnDragEnded()
-	{
-		MergeIngredients();
 	}
 }

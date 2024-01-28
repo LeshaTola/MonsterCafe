@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class MixingTool : ProcessingTool, IHasProgressBar
 {
-	public event Action<float> OnProgressChanged;
-	public event Action OnMixingEnded;
 
 	[SerializeField] private float mixingTime = 3f;
 
 	private float mixingTimer;
+
+	public event Action<float> OnProgressChanged;
+	public event Action OnMixingEnded;
 
 	private void Update()
 	{

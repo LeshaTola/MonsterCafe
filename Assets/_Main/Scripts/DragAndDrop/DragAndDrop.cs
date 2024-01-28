@@ -4,11 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class DragAndDrop : MonoBehaviour
 {
-	public event Action OnDragStarted;
-	public event Action OnDragEnded;
-
 	private Vector3 offset;
 	private Camera cameraMain;
+
+	public event Action OnDragStarted;
+	public event Action OnDragEnded;
 
 	private void Awake()
 	{
