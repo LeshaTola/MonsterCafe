@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3166472602647902813}
   - component: {fileID: 1891182244152942378}
   - component: {fileID: 6814073653168988078}
+  - component: {fileID: 1483251521357585986}
   m_Layer: 0
   m_Name: CustomerPool
   m_TagString: Untagged
@@ -65,7 +66,7 @@ Transform:
   - {fileID: 3029251903587141801}
   - {fileID: 734927027809637459}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1891182244152942378
 MonoBehaviour:
@@ -81,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectPool: {fileID: 6814073653168988078}
   queueTimer: 2
+  toolTipUI: {fileID: 0}
 --- !u!114 &6814073653168988078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +98,18 @@ MonoBehaviour:
   poolSise: 6
   isAutoExpand: 0
   prefab: {fileID: -5713281564622590721, guid: da2b0ff810a44634184e5e685516f44f, type: 3}
+--- !u!114 &1483251521357585986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856222097984258720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c5e4ee26d7a3e418eaf3a12a1b9a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4636587792384644179
 GameObject:
   m_ObjectHideFlags: 0

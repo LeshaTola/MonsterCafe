@@ -9,6 +9,7 @@ public class RecipeSentry : MonoBehaviour
 	[SerializeField] private MergingRecipesListSO mergingRecipes;
 
 	public static RecipeSentry Instance { get; private set; }
+	public MergingRecipesListSO MergingRecipes { get { return mergingRecipes; } }
 
 	private void Awake()
 	{
