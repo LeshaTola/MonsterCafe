@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class DragAndDrop : MonoBehaviour
 {
 	private Vector3 offset;
