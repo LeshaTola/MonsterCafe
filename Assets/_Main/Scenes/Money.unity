@@ -890,6 +890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750722074}
+  - component: {fileID: 750722075}
   m_Layer: 0
   m_Name: MoneyUI
   m_TagString: Untagged
@@ -920,6 +921,20 @@ RectTransform:
   m_AnchoredPosition: {x: -1.5, y: 0}
   m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &750722075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750722073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e9fec5db1ba1c4295a49afd5ad3301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 1441808401}
+  money: {fileID: 799752953}
 --- !u!1001 &770938188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,6 +1011,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4989b1f2d309b4546aa0edaa25df8c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &799752952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799752954}
+  - component: {fileID: 799752953}
+  m_Layer: 0
+  m_Name: Money
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &799752953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799752952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb68994188bbbd147a18f16e24ad5151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &799752954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799752952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &918827392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7061502406693590961, guid: 7a796968902ec454e8f01dd86dfc8b4a, type: 3}
@@ -1676,7 +1735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133316852496242349, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0472974
+      value: -1.9527026
       objectReference: {fileID: 0}
     - target: {fileID: 133316852496242349, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
       propertyPath: m_LocalPosition.y
