@@ -6,6 +6,11 @@ public class Ingredient : MonoBehaviour, ISaltable
 
 	public Salt Salt { get; set; }
 
+	private void OnParticleTrigger()
+	{
+
+	}
+
 	private void Awake()
 	{
 		Salt = new();

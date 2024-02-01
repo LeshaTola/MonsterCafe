@@ -235,6 +235,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 768826408503273717, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2222760512069549410, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}
       propertyPath: m_Name
       value: Cheese
@@ -245,11 +249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5406429463161919898, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7094595
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5406429463161919898, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5878378
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 5406429463161919898, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}
       propertyPath: m_LocalPosition.z
@@ -283,7 +287,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4573090458510917728, guid: 8ab49c5f0c2036247b4c93506d990762, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -318,6 +323,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &301418277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 301418278}
+  m_Layer: 0
+  m_Name: SaltTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &301418278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301418277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1936259861}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &398156947
 PrefabInstance:
@@ -840,8 +876,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1068466763
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1082,17 +1118,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Olive
       objectReference: {fileID: 0}
+    - target: {fileID: 1656511930826443596, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6291820785952979491, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6291820785952979491, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1824324
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6291820785952979491, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16891891
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 6291820785952979491, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1126,7 +1166,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9028300634518957466, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028300634518957466, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028300634518957466, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 25
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2531188821124981721, guid: fa74e251d1053074b8e382e5d6cd01bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1176,11 +1229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133316852496242349, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0472974
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 133316852496242349, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0135136
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: 133316852496242349, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1214,11 +1267,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4644820354737547202, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6054536523918864981, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
       propertyPath: m_Name
       value: Tomato
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8478093925538713431, guid: 979a68dfa9a31814b99b953a4aced739, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1256,6 +1314,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1065327917}
+  - {fileID: 301418278}
   - {fileID: 1487666173}
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -1333,11 +1392,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7204dbdceff0324fb50d5e1eaf6a3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragAndDrop: {fileID: 1936259863}
   saltParticle: {fileID: 4681645713312519792, guid: 290fa1bc441846f48a77c04c6ac424e4, type: 3}
   spawnPoint: {fileID: 1487666173}
-  yDifference: -0.2
+  yDifference: -0.1
   cooldown: 0.1
+  saltPower: 0.25
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &1962692562 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7877242967493992494, guid: a3b593111e8fa2043ae1fe975446abc4, type: 3}

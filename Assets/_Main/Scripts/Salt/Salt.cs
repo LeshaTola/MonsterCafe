@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-public class Salt : MonoBehaviour
+public class Salt
 {
 	public event Action<float> OnValueChanged;
 	public event Action OnSaltingEnded;
@@ -22,6 +21,10 @@ public class Salt : MonoBehaviour
 		if (Value >= maxValue)
 		{
 			Value = maxValue;
+			OnSaltingEnded?.Invoke();
+			return;
 		}
+
+		OnValueChanged?.Invoke(Value);
 	}
 }

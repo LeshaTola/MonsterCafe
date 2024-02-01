@@ -7,6 +7,7 @@ public class Merge : MonoBehaviour
 {
 	[SerializeField] private Ingredient ingredient;
 	[SerializeField] private DragAndDrop dragAndDrop;
+	[SerializeField] private LayerMask layerMask;
 
 	private float mergeRadius;
 	private CircleCollider2D myCollider;
@@ -58,7 +59,7 @@ public class Merge : MonoBehaviour
 
 	private List<Collider2D> FindNearestColiders()
 	{
-		var colliders = Physics2D.OverlapCircleAll(transform.position, mergeRadius).ToList();
+		var colliders = Physics2D.OverlapCircleAll(transform.position, mergeRadius, layerMask).ToList();
 		colliders.Remove(myCollider);
 		return colliders;
 	}
