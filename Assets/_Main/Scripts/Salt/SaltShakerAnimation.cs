@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class SaltAnimation : MonoBehaviour
+public class SaltShakerAnimation : MonoBehaviour
 {
 	[SerializeField] private DragAndDrop dragAndDrop;
 

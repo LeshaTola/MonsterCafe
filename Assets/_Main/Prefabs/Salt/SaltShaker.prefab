@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4681645713312519792}
   - component: {fileID: 5878842021609142730}
   m_Layer: 0
-  m_Name: Salt
+  m_Name: SaltShaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,81 +1,27 @@
+using System;
 using UnityEngine;
 
 public class Salt : MonoBehaviour
 {
-	[SerializeField] private ParticleSystem saltParticle;
-	[SerializeField] private Transform spawnPoint;
+	public event Action<float> OnValueChanged;
+	public event Action OnSaltingEnded;
 
-	[SerializeField] private float yDifference;
-	[SerializeField] private float cooldown;
+	private float maxValue = 1f;
 
-	private float prevYPosition;
-	private float cooldownTimer;
-	private bool strongSwing;
-	private ObjectPool<ParticleSystem> saltPool;
+	public float Value { get; private set; }
 
-	private void Awake()
+	public void Salting(float value)
 	{
-		SetupSaltPool();
-	}
-
-	private void Update()
-	{
-		if (!strongSwing)
+		if (value <= 0 || Value.Equals(maxValue))
 		{
-			strongSwing = IsStrongSwing();
+			return;
 		}
 
-		cooldownTimer -= Time.deltaTime;
-		if (cooldownTimer <= 0)
+		Value += value;
+
+		if (Value >= maxValue)
 		{
-			Salting();
+			Value = maxValue;
 		}
-		prevYPosition = transform.position.y;
-	}
-
-	private void Salting()
-	{
-		if (strongSwing && IsSwingEnded())
-		{
-			var particle = saltPool.Get();
-			Timer particleLifeTime = new Timer(particle.main.startLifetime.constantMax, endAction: () =>
-			{
-				saltPool.Release(particle);
-			});
-			StartCoroutine(particleLifeTime.Start());
-
-			cooldownTimer = cooldown;
-			strongSwing = false;
-		}
-	}
-
-	private void SetupSaltPool()
-	{
-		saltPool = new ObjectPool<ParticleSystem>(() =>
-		{
-			return Instantiate(saltParticle);
-		},
-				(saltParticle) =>
-				{
-					saltParticle.gameObject.SetActive(true);
-					saltParticle.transform.position = spawnPoint.position;
-					saltParticle.transform.rotation = spawnPoint.rotation;
-				},
-				(saltParticle) =>
-				{
-					saltParticle.gameObject.SetActive(false);
-				},
-				5
-				);
-	}
-
-	private bool IsStrongSwing()
-	{
-		return transform.position.y - prevYPosition < yDifference;
-	}
-
-	private bool IsSwingEnded()
-	{
-		return transform.position.y - prevYPosition > 0;
 	}
 }
