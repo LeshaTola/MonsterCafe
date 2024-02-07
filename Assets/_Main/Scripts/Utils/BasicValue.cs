@@ -1,13 +1,12 @@
 using System;
-using UnityEngine;
 
-public class Money : MonoBehaviour
+public class BasicValue
 {
-	public event Action<int> OnValueChanged;
+	public event Action<float> OnValueChanged;
 
-	public int Value { get; private set; }
+	public float Value { get; private set; }
 
-	public void AddMoney(int count)
+	public void Add(float count)
 	{
 		if (count <= 0)
 		{
@@ -18,7 +17,7 @@ public class Money : MonoBehaviour
 		OnValueChanged?.Invoke(Value);
 	}
 
-	public void DenyMoney(int count)
+	public void Deny(float count)
 	{
 		if (count <= 0)
 		{
@@ -28,5 +27,4 @@ public class Money : MonoBehaviour
 		Value -= count;
 		OnValueChanged?.Invoke(Value);
 	}
-
 }
