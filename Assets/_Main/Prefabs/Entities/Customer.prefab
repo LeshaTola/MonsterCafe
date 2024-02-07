@@ -403,7 +403,7 @@ MonoBehaviour:
   popUp: {fileID: 580204973538380548}
   popUpAnimation: {fileID: 2997128900695076205}
   customer: {fileID: -5713281564622590721}
-  toolTipUI: {fileID: 0}
+  order: {fileID: 5730826895925308596}
 --- !u!1 &7882907183563142363
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 3192956595573124291}
   - component: {fileID: -5713281564622590721}
   - component: {fileID: 2729956219533971703}
+  - component: {fileID: 5730826895925308596}
   - component: {fileID: -9177695740765111797}
   - component: {fileID: 4696497828225149302}
   m_Layer: 6
@@ -470,6 +471,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 59afbd296e73998438f4e1fd46952d3f, type: 2}
+--- !u!114 &5730826895925308596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7882907183563142363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cfc8e9129d70a46a363510859f6807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customer: {fileID: -5713281564622590721}
 --- !u!70 &-9177695740765111797
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

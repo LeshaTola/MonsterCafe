@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ToolTipUI : MonoBehaviour
 {
     [SerializeField] private Button close;
+    [SerializeField] private TextMeshProUGUI orderName;
 
     private void Awake()
     {
@@ -15,9 +17,10 @@ public class ToolTipUI : MonoBehaviour
         Hide();
     }
 
-    public void Show()
+    public void Show(string name)
     {
         gameObject.SetActive(true);
+        orderName.text = name;
     }
 
     private void Hide()
